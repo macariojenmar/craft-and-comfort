@@ -1,0 +1,1 @@
+export const formatWithThousandSeparator = (number) => new Intl.NumberFormat().format(number);
