@@ -10,11 +10,19 @@ export const ItemCard = (props) => {
     image,
     name,
     price
-  } = props ;
+  } = props;
 
   return (
     <Fragment>
-      <Box sx={{ height: '260px', mb: 1, backgroundColor: '#dadada', borderRadius: '10px' }}>
+      <Box
+        sx={{
+          height: '260px',
+          mb: 1,
+          backgroundColor: '#dadada',
+          borderRadius: '10px',
+          cursor: 'pointer'
+        }}
+      >
         <img
           src={image}
           style={{ width: '100%', height: '100%', borderRadius: '10px', boxShadow: SHADOWS.default }}
