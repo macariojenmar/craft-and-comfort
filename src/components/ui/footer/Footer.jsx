@@ -8,23 +8,22 @@ export const Footer = () => {
     <Fragment>
       <Box
         sx={{
-          padding: '35px 100px',
+          padding: { xs: '20px 15px', md: '35px 100px' },
           backgroundColor: 'primary.main',
-          height: 200,
           color: 'secondary.main',
           display: 'flex',
           justifyContent: 'center'
         }}>
-        <Grid2 container spacing={25} alignItems={'center'}>
+        <Grid2 container spacing={{ xs: 1, md: 25 }} alignItems={'center'}>
           <Grid2 item>
-            <Typography variant="h2" fontWeight={800}>Craft & </Typography>
-            <Typography variant="h2" fontWeight={800}>Comfort</Typography>
+            <Typography variant="h3" fontWeight={800}>Craft & </Typography>
+            <Typography variant="h3" fontWeight={800}>Comfort</Typography>
           </Grid2>
-          <Grid2 container item>
+          <Grid2 container item spacing={{ xs: 11, md: 25 }}>
             <Box>
               <Typography fontWeight={800} color="primary.lighter">Contact</Typography>
-              <Typography>craft&comfort@email.com</Typography>
-              <Typography>417-623-8766</Typography>
+              <Typography variant="body2">craft&comfort@email.com</Typography>
+              <Typography variant="body2">417-623-8766</Typography>
             </Box>
             <Box>
               <Typography fontWeight={800} color="primary.lighter" mb={0.4}>Social</Typography>
@@ -41,7 +40,6 @@ export const Footer = () => {
         sx={{
           padding: 1,
           backgroundColor: 'primary.darker',
-          height: 35,
           display: 'flex',
           justifyContent: 'center'
         }}>

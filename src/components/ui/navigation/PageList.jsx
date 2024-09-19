@@ -4,10 +4,10 @@ import { GenericLink } from "../../generic/GenericLink";
 import { NAVIGATION } from "../../../enums/generalEnum";
 import { useLocation } from "react-router-dom";
 
-export const PageList = () => {
+export const PageList = ({ isMobile }) => {
   const { pathname: currentPath } = useLocation();
   return (
-    <Stack direction={'row'} gap={2}>
+    <Stack direction={isMobile ? 'column' : 'row'} gap={2}>
       {
         NAVIGATION?.map((item, index) => {
           const isCurrentPath = (item?.path === currentPath);

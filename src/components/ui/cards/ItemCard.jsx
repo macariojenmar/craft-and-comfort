@@ -16,7 +16,7 @@ export const ItemCard = (props) => {
     <Fragment>
       <Box
         sx={{
-          height: '260px',
+          height: { xs: '320px', md: '260px' },
           mb: 1,
           backgroundColor: '#dadada',
           borderRadius: '10px',

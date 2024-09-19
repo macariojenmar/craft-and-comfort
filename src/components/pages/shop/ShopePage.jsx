@@ -35,7 +35,7 @@ const ShopPage = () => {
         {
           FURNITURES?.map((item, index) => {
             return (
-              <Grid2 item size={{ xs: 2 }} key={`card-key-${index}`}>
+              <Grid2 item size={{ xs: 12, md: 2 }} key={`card-key-${index}`}>
                 <ItemCard
                   image={item?.image}
                   name={item?.name}
