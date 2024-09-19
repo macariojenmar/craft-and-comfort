@@ -5,6 +5,7 @@ import NavigationBar from './components/ui/navigation/NavigationBar';
 import MuiThemeProvider from './providers/ThemeProvider';
 import HomePage from './components/pages/homePage/HomePage';
 import { Footer } from './components/ui/footer/Footer';
+import ShopPage from './components/pages/shop/ShopePage';
 
 const root = createRoot(document.getElementById("root"));
 
@@ -14,6 +15,7 @@ root.render(
       <NavigationBar />
       <Routes>
         <Route path='/' element={<HomePage />} />
+        <Route path='/shop' element={<ShopPage />} />
       </Routes>
       <Footer />
     </MuiThemeProvider>
