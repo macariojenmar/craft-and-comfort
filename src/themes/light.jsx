@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material";
+import { SHADOWS } from "../enums/themeEnums";
 
 export const light = createTheme({
   palette: {
@@ -62,6 +63,17 @@ export const light = createTheme({
           boxShadow: 'none',
           padding: 15,
           borderRadius: '10px'
+        }
+      }
+    },
+    MuiPopover: {
+      styleOverrides: {
+        root: {
+          '.MuiPaper-root': {
+            boxShadow: SHADOWS.default,
+            borderRadius: '10px',
+            minWidth: 100
+          }
         }
       }
     }

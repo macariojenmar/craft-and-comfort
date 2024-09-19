@@ -1,3 +1,4 @@
+export const PESO_SYMBOL = '₱';
 export const SHOW_IN_MOBILE = { xs: 'flex', md: 'none' };
 export const SHOW_IN_DESKTOP = { xs: 'none', md: 'flex' };
 

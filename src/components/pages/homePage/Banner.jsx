@@ -3,8 +3,10 @@ import { Box, Button, Fade, Grid2, Stack, Typography } from "@mui/material";
 import { BANNER } from "../../../enums/dummyData/dummyData";
 import { arrayShuffler } from "../../../helpers/arrayHelper";
 import { GenericResponsiveTypography } from "../../generic/GenericResponsiveTypography";
+import { useNavigate } from "react-router-dom";
 
 export const Banner = () => {
+  const navigate = useNavigate();
   return (
     <Fade in={true}>
       <Box sx={{ backgroundColor: 'primary.main', padding: { md: '0px 300px' }, color: '#FFF' }}>
@@ -13,7 +15,7 @@ export const Banner = () => {
             <GenericResponsiveTypography fontWeight={800} mb={1}>Simplicity & Elegance in Every Modern Piece</GenericResponsiveTypography>
             <Typography>Discover furniture that blends modern minimalism with timeless class. Each piece is designed to bring elegance, comfort, and style to your space. Elevate your home with our curated collection today.</Typography>
             <Stack direction={'row'} gap={1} mt={2}>
-              <Button variant="contained" color="secondary">Shop Now</Button>
+              <Button variant="contained" color="secondary" onClick={() => navigate('/shop')}>Shop Now</Button>
               <Button variant="outlined" color="#FFF">Explore</Button>
             </Stack>
           </Grid2>

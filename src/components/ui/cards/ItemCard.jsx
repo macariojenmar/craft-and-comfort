@@ -4,6 +4,7 @@ import { GenericIconButton } from "../../generic/GenericIconButton";
 import { TbBasket, TbHeart } from "react-icons/tb";
 import { formatWithThousandSeparator } from "../../../helpers/stringHelper";
 import { SHADOWS } from "../../../enums/themeEnums";
+import { PESO_SYMBOL } from "../../../enums/generalEnum";
 
 export const ItemCard = (props) => {
   const {
@@ -31,7 +32,7 @@ export const ItemCard = (props) => {
       <Grid2 container justifyContent={'space-between'} mb={0.5}>
         <Grid2 item>
           <Typography fontWeight={800}>{name}</Typography>
-          <Typography variant="body2">₱{formatWithThousandSeparator(price)}</Typography>
+          <Typography variant="body2">{PESO_SYMBOL}{formatWithThousandSeparator(price)}</Typography>
         </Grid2>
         <Grid2 item>
           <Stack direction={'row'}>

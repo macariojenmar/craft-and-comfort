@@ -3,7 +3,7 @@ export const CHAIR = 'chair';
 export const SOFA = 'sofa';
 export const TABLE = 'table';
 export const VASE = 'vase';
-
+export const CATEGORIES = [CABINET, CHAIR, SOFA, TABLE, VASE];
 export const FURNITURES = [
   {
     id: 2,

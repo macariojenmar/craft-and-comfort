@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { Box, Grid2, Stack, Typography } from "@mui/material";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
+import { GenericResponsiveTypography } from "../../generic/GenericResponsiveTypography";
 
 export const Footer = () => {
   return (
@@ -16,8 +17,8 @@ export const Footer = () => {
         }}>
         <Grid2 container spacing={{ xs: 1, md: 25 }} alignItems={'center'}>
           <Grid2 item>
-            <Typography variant="h3" fontWeight={800}>Craft & </Typography>
-            <Typography variant="h3" fontWeight={800}>Comfort</Typography>
+            <GenericResponsiveTypography fontWeight={700}>Craft &</GenericResponsiveTypography>
+            <GenericResponsiveTypography fontWeight={700}>Comfort</GenericResponsiveTypography>
           </Grid2>
           <Grid2 container item spacing={{ xs: 11, md: 25 }}>
             <Box>
