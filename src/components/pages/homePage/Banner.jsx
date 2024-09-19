@@ -18,8 +18,7 @@ export const Banner = () => {
           </Grid2>
           <Grid2 container item size={{ xs: 6 }} justifyContent={'flex-end'}>
             {
-              arrayShuffler(Object.values(BANNER))?.slice(0, 1)?.map((item, index) => {
-                console.log('item', item);
+              Object.values(arrayShuffler(BANNER))?.slice(0, 1)?.map((item, index) => {
                 return (
                   <Box key={`banner-key-${index}`} sx={{ width: '550px', height: '400px' }}>
                     <img

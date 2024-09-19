@@ -247,4 +247,12 @@ export const FURNITURES = [
   }
 ];
 
-export const BANNER = Object.freeze(['/banner/classy.jpg', '/banner/minimalist.jpg', '/banner/minimalist2.jpg']);
+export const BANNER = Object.freeze([
+  '/banner/classy.jpg',
+  '/banner/minimalist.jpg',
+  '/banner/minimalist2.jpg',
+  '/banner/classy2.jpg',
+  '/banner/minimalist3.jpg',
+  '/banner/minimalist4.jpg',
+  '/banner/classy3.jpg'
+]);
