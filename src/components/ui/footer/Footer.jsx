@@ -22,12 +22,12 @@ export const Footer = () => {
           </Grid2>
           <Grid2 container item>
             <Box>
-              <Typography fontWeight={800} color="#A56C6E">Contact</Typography>
+              <Typography fontWeight={800} color="primary.lighter">Contact</Typography>
               <Typography>craft&comfort@email.com</Typography>
               <Typography>417-623-8766</Typography>
             </Box>
             <Box>
-              <Typography fontWeight={800} color="#A56C6E" mb={0.4}>Social</Typography>
+              <Typography fontWeight={800} color="primary.lighter" mb={0.4}>Social</Typography>
               <Stack direction={'row'} gap={1}>
                 <FaFacebook size={'24px'} />
                 <BsTwitterX size={'24px'} />
@@ -45,7 +45,7 @@ export const Footer = () => {
           display: 'flex',
           justifyContent: 'center'
         }}>
-        <Typography color="#A56C6E">© 2024 Craft & Comfort. All Rights Reserved</Typography>
+        <Typography color="primary.lighter" variant="body2">© 2024 Craft & Comfort. All Rights Reserved</Typography>
       </Box>
     </Fragment>
   );

@@ -11,7 +11,7 @@ const HomePage = () => {
     <Fragment>
       <Banner />
       <AppLayout>
-        <Grid2 container spacing={4} mt={2}>
+        <Grid2 container spacing={4} mt={1} mb={1}>
           {
             arrayShuffler(FURNITURES).slice(0, 6)?.map((item, index) => {
               return (
