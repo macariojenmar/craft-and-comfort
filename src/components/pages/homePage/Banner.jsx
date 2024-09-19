@@ -9,8 +9,8 @@ export const Banner = () => {
       <Box sx={{ backgroundColor: 'primary.main', padding: '0px 300px', color: '#FFF' }}>
         <Grid2 container alignItems={'center'}>
           <Grid2 item size={{ xs: 6 }}>
-            <Typography variant="h3" fontWeight={800} mb={1}>Lorem ipsum dolor sit amet consectetur adipiscing elit</Typography>
-            <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </Typography>
+            <Typography variant="h3" fontWeight={800} mb={1}>Simplicity & Elegance in Every Modern Piece</Typography>
+            <Typography>Discover furniture that blends modern minimalism with timeless class. Each piece is designed to bring elegance, comfort, and style to your space. Elevate your home with our curated collection today.</Typography>
             <Stack direction={'row'} gap={1} mt={2}>
               <Button variant="contained" color="secondary">Shop Now</Button>
               <Button variant="outlined" color="#FFF">Explore</Button>
