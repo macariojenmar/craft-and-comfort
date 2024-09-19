@@ -22,6 +22,22 @@ export const light = createTheme({
     fontFamily: 'Nunito'
   },
   components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          '::-webkit-scrollbar': {
+            width: '5px',
+            height: '5px',
+          },
+          '::-webkit-scrollbar-thumb': {
+            backgroundColor: '#452d2d',
+          },
+          '::-webkit-scrollbar-thumb:hover': {
+            backgroundColor: '#FFF0D1',
+          },
+        },
+      },
+    },
     MuiTextField: {
       styleOverrides: {
         root: {
