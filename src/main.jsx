@@ -6,18 +6,27 @@ import MuiThemeProvider from './providers/ThemeProvider';
 import HomePage from './components/pages/homePage/HomePage';
 import { Footer } from './components/ui/footer/Footer';
 import ShopPage from './components/pages/shop/ShopePage';
+import { Box } from '@mui/material';
 
 const root = createRoot(document.getElementById("root"));
 
 root.render(
   <BrowserRouter>
     <MuiThemeProvider>
-      <NavigationBar />
-      <Routes>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/shop' element={<ShopPage />} />
-      </Routes>
-      <Footer />
+      <Box
+        display="flex"
+        flexDirection="column"
+        minHeight="100vh"
+      >
+        <NavigationBar />
+        <Box component="main" flex={1}>
+          <Routes>
+            <Route path='/' element={<HomePage />} />
+            <Route path='/shop' element={<ShopPage />} />
+          </Routes>
+        </Box>
+        <Footer />
+      </Box>
     </MuiThemeProvider>
   </BrowserRouter>
 );

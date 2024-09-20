@@ -1,75 +1,99 @@
 import React, { Fragment } from "react";
-import { Button, Checkbox, Divider, FormControlLabel, Grid2, MenuItem, Slider, Stack, TextField, Typography } from "@mui/material";
+import { Button, Checkbox, FormControlLabel, Grid2, Slider, Stack, Typography } from "@mui/material";
 import { CATEGORIES } from "../../../enums/dummyData/dummyData";
 import { PESO_SYMBOL } from "../../../enums/generalEnum";
+import { formatWithThousandSeparator, kebabToCapitalized } from "../../../helpers/stringHelper";
+import { FaCheck } from "react-icons/fa6";
 
 export const FiltersAndCategories = (props) => {
   const {
-    isCategories,
+    filterType,
     handleSelectPriceRange,
-    rangeValue,
     filters,
-    setFilters,
-    setCategories,
-    handleJoinFilters
+    handleSelectFilters,
+    setSortType,
+    sortType,
+    handleApplyFilter
   } = props;
+
+  const sortTypes = ['default', 'price-low-to-high', 'price-high-to-low'];
 
   return (
     <Fragment>
       {
-        isCategories ? <Grid2 container>
+        filterType === 'sort' ? <Fragment>
           {
-            Object.values(CATEGORIES)?.map((item, index) => {
+            Object.values(sortTypes)?.map((item, index) => {
+              const isSelected = (sortType === item);
               return (
-                <Grid2 item size={{ xs: 6 }} key={`category-key-${index}`}>
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        size="small"
-                      />
-                    }
-                    label={
-                      <Typography variant="body2" sx={{ textTransform: 'capitalize' }}>
-                        {item}
-                      </Typography>
-                    }
-                  />
-                </Grid2>
-              );
+                <Button
+                  key={`sort-key-${index}`}
+                  startIcon={isSelected && <FaCheck size={'14px'} />}
+                  fullWidth
+                  color={isSelected ? "primary" : ''}
+                  size="small"
+                  sx={{ justifyContent: 'flex-start', fontWeight: isSelected && 800 }}
+                  onClick={() => setSortType(item)}
+                >
+                  {kebabToCapitalized(item)}
+                </Button>
+              )
             })
           }
-        </Grid2> : <Fragment>
+        </Fragment> : <Fragment>
           <Typography variant="body2" color="grey">Price Range</Typography>
           <Slider
             onChange={handleSelectPriceRange}
             size="small"
-            value={rangeValue}
+            value={filters?.price_range}
             min={0}
             max={5000}
           />
-          <Stack direction={'row'} justifyContent={'space-between'} mb={1}>
-            <Typography variant="body2">{PESO_SYMBOL}{rangeValue[0]}</Typography>
-            <Typography variant="body2">{PESO_SYMBOL}{rangeValue[1]}</Typography>
+          <Stack direction={'row'} justifyContent={'space-between'} mb={2}>
+            <Typography variant="body2">{PESO_SYMBOL}{formatWithThousandSeparator(filters?.price_range[0])}</Typography>
+            <Typography variant="body2">{PESO_SYMBOL}{formatWithThousandSeparator(filters?.price_range[1])}</Typography>
           </Stack>
-          <Button variant="contained" fullWidth size="small" onClick={() => handleJoinFilters()}>Apply</Button>
-          <Divider sx={{ margin: '10px 0' }} />
-          <Typography variant="body2" color="grey">Sort</Typography>
-          <TextField
-            size="small"
-            select
-            value={filters?.sort}
-            onChange={(event) => setFilters((prev) => ({ ...prev, sort: event.target.value }))}
-            sx={{ width: '200px' }}
+          <Typography variant="body2" color="grey">Categories</Typography>
+          <Grid2 container>
+            {
+              Object.values(CATEGORIES)?.map((item, index) => {
+                return (
+                  <Grid2 item size={{ xs: 6 }} key={`category-key-${index}`}>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          size="small"
+                          checked={filters?.categories.includes(item)}
+                          onChange={(event) => {
+                            if (event.target.checked) {
+                              handleSelectFilters('categories', [...filters.categories, item]);
+                            } else {
+                              handleSelectFilters('categories', filters?.categories.filter(category => category !== item));
+                            }
+                          }}
+                        />
+                      }
+                      label={
+                        <Typography variant="body2" sx={{ textTransform: 'capitalize' }}>
+                          {item}
+                        </Typography>
+                      }
+                    />
+                  </Grid2>
+                );
+              })
+            }
+          </Grid2>
+          <Button
+            variant="contained"
+            fullWidth size="small"
+            sx={{ margin: '10px 0' }}
+            onClick={() => handleApplyFilter()}
           >
-            <MenuItem value={'default'}>Default</MenuItem>
-            <MenuItem value={'price-low-to-high'}>Price low to high</MenuItem>
-            <MenuItem value={'price-high-to-low'}>Price hight to low</MenuItem>
-          </TextField>
+            Apply
+          </Button>
         </Fragment>
       }
     </Fragment>
   )
 };
-
-//range
-//sort by price low to high or high to low

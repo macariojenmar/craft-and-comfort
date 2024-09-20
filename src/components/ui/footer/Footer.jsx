@@ -17,8 +17,7 @@ export const Footer = () => {
         }}>
         <Grid2 container spacing={{ xs: 1, md: 25 }} alignItems={'center'}>
           <Grid2 item>
-            <GenericResponsiveTypography fontWeight={700}>Craft &</GenericResponsiveTypography>
-            <GenericResponsiveTypography fontWeight={700}>Comfort</GenericResponsiveTypography>
+            <GenericResponsiveTypography fontWeight={700}>Craft & Comfort</GenericResponsiveTypography>
           </Grid2>
           <Grid2 container item spacing={{ xs: 11, md: 25 }}>
             <Box>
