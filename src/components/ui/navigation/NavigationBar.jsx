@@ -9,9 +9,13 @@ import { NavigationMobile } from "./NavigationMobile";
 import { DisplayLayout } from "../../../layouts/DisplayLayout";
 import { GenericIconButton } from "../../generic/GenericIconButton";
 import { IoMenu } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 const NavigationBar = () => {
   const [openMenuDrawer, setOpenMenuDrawer] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
+  const navigate = useNavigate();
+
   const handleToggleMenuDrawer = () => {
     setOpenMenuDrawer(prev => !prev);
   };
@@ -39,9 +43,12 @@ const NavigationBar = () => {
         <Grid2 item size={{ xs: 12, md: 4 }}>
           <Box sx={{ backgroundColor: '#FFF', borderRadius: '10px', boxShadow: SHADOWS.default }}>
             <TextField
+              value={searchValue}
               placeholder="Search furniture here"
               fullWidth
               size="small"
+              onChange={(event) => setSearchValue(event.target.value)}
+              onKeyDown={(event) => { if (event.key === 'Enter') navigate(`/shop?search=${searchValue}`) }}
               sx={{
                 '& fieldset': {
                   border: 'none'
@@ -49,7 +56,14 @@ const NavigationBar = () => {
               }}
               slotProps={{
                 input: {
-                  endAdornment: <LuSearch />,
+                  endAdornment: (
+                    <GenericIconButton
+                      icon={<LuSearch size={'18px'} />}
+                      tooltip={'Search'}
+                      onClick={() => navigate(`/shop?search=${searchValue}`)}
+                    />
+                  ),
+
                 },
               }}
             />

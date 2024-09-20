@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import AppLayout from "../../../layouts/AppLayout";
-import { Chip, Grid2, Popover, Stack } from "@mui/material";
+import { Box, Chip, Grid2, Popover, Stack, Typography } from "@mui/material";
 import { ItemCard } from "../../ui/cards/ItemCard";
 import { FURNITURES } from "../../../enums/dummyData/dummyData";
 import { MdKeyboardArrowDown } from "react-icons/md";
@@ -9,15 +9,19 @@ import { IoFilter } from "react-icons/io5";
 import { FiltersAndCategories } from "./FiltersAndCategories";
 import { TbArrowsSort } from "react-icons/tb";
 import { PESO_SYMBOL, SORT_PRICE_HIGH_TO_LOW, SORT_PRICE_LOW_TO_HIGH } from "../../../enums/generalEnum";
-import { formatWithThousandSeparator, kebabToCapitalized } from "../../../helpers/stringHelper";
+import { formatWithThousandSeparator, frontendSearch, kebabToCapitalized } from "../../../helpers/stringHelper";
+import { useSearchParams } from "react-router-dom";
+import { GoInbox } from "react-icons/go";
 
 const ShopPage = () => {
+  const [searchParams] = useSearchParams();
   const defaultFilters = { price_range: [0, 5000], categories: [] };
   const [anchorEl, setAnchorEl] = useState(null);
   const [filterType, setFilterType] = useState('sort');
   const [sortType, setSortType] = useState('default');
   const [appliedFilters, setAppliedFilters] = useState(defaultFilters);
   const [filters, setFilters] = useState(defaultFilters);
+  const searchValue = searchParams.get('search');
 
   const handleSelectPriceRange = (event, newValue) => {
     setFilters((prev) => ({ ...prev, price_range: newValue }))
@@ -42,8 +46,11 @@ const ShopPage = () => {
     } else if (sortType === SORT_PRICE_HIGH_TO_LOW) {
       list = list?.sort((a, b) => a.price - b.price);
     }
+    if (searchValue) {
+      list = frontendSearch(list, searchValue)
+    }
     return list;
-  }, [sortType, appliedFilters]);
+  }, [sortType, appliedFilters, searchValue]);
 
   const handleApplyFilter = () => {
     setAppliedFilters({ ...filters });
@@ -88,21 +95,36 @@ const ShopPage = () => {
           }
         </Grid2>
       </Grid2>
-      <Grid2 container spacing={4}>
-        {
-          renderFurnitures?.map((item, index) => {
-            return (
-              <Grid2 item size={{ xs: 12, md: 2 }} key={`card-key-${index}`}>
-                <ItemCard
-                  image={item?.image}
-                  name={item?.name}
-                  price={item?.price}
-                />
-              </Grid2>
-            );
-          })
-        }
-      </Grid2>
+      {
+        renderFurnitures?.length > 0 ? <Grid2 container spacing={4}>
+          {
+            renderFurnitures?.map((item, index) => {
+              return (
+                <Grid2 item size={{ xs: 12, md: 2 }} key={`card-key-${index}`}>
+                  <ItemCard
+                    image={item?.image}
+                    name={item?.name}
+                    price={item?.price}
+                  />
+                </Grid2>
+              );
+            })
+          }
+        </Grid2> : <Box
+          sx={{
+            padding: 1,
+            display: 'flex',
+            justifyContent: 'center',
+            height: '50vh',
+            alignItems: 'center',
+          }}
+        >
+          <Stack gap={1} alignItems={'center'}>
+            <GoInbox size={'45px'} color="grey" />
+            <Typography variant="body2" color="grey" fontWeight={700}>No Items Found</Typography>
+          </Stack>
+        </Box>
+      }
       <Popover
         open={Boolean(anchorEl)}
         anchorEl={anchorEl}
