@@ -76,6 +76,17 @@ export const light = createTheme({
           }
         }
       }
+    },
+    MuiDrawer: {
+      styleOverrides: {
+        root: {
+          '.MuiPaper-root': {
+            minWidth: '280px',
+            padding: '10px 20px',
+            boxShadow: 'none'
+          }
+        }
+      }
     }
   }
 });
