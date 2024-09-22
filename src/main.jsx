@@ -7,12 +7,17 @@ import HomePage from './components/pages/homePage/HomePage';
 import { Footer } from './components/ui/footer/Footer';
 import ShopPage from './components/pages/shop/ShopePage';
 import { Box } from '@mui/material';
+import { Toaster } from 'react-hot-toast';
 
 const root = createRoot(document.getElementById("root"));
 
 root.render(
   <BrowserRouter>
     <MuiThemeProvider>
+      <Toaster
+        position="bottom-left"
+        reverseOrder={false}
+      />
       <Box
         display="flex"
         flexDirection="column"

@@ -16,11 +16,7 @@ const HomePage = () => {
             arrayShuffler(FURNITURES).slice(0, 6)?.map((item, index) => {
               return (
                 <Grid2 item size={{ xs: 12, md: 2 }} key={`card-key-${index}`}>
-                  <ItemCard
-                    image={item?.image}
-                    name={item?.name}
-                    price={item?.price}
-                  />
+                  <ItemCard item={item} />
                 </Grid2>
               );
             })

@@ -81,8 +81,8 @@ export const light = createTheme({
       styleOverrides: {
         root: {
           '.MuiPaper-root': {
-            minWidth: '280px',
-            padding: '10px 20px',
+            minWidth: '300px',
+            padding: '10px 15px',
             boxShadow: 'none'
           }
         }
