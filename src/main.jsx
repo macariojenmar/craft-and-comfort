@@ -15,7 +15,7 @@ root.render(
   <BrowserRouter>
     <MuiThemeProvider>
       <Toaster
-        position="bottom-left"
+        position="bottom-center"
         reverseOrder={false}
       />
       <Box

@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Box, Button, Grid2, Stack, Typography } from "@mui/material";
 import { GenericIconButton } from "../../generic/GenericIconButton";
-import { TbBasket, TbHeart } from "react-icons/tb";
+import { TbBasket } from "react-icons/tb";
 import { formatWithThousandSeparator } from "../../../helpers/stringHelper";
 import { SHADOWS } from "../../../enums/themeEnums";
 import { PESO_SYMBOL } from "../../../enums/generalEnum";
@@ -18,16 +18,15 @@ export const ItemCard = (props) => {
   const { addCartItem } = useBasketStore()
   const { likedItems, addLikeItem, unlikeItem } = useLikeStore()
 
-  console.log('likedItems', likedItems);
-
   const handleAddToCart = (item) => {
     addCartItem(item)
     toast('Added to basket!', { icon: '🧺' });
   };
 
-  const handleLikeUnlike = (item) => {
+  const handleLikeUnlike = (item, isLike) => {
     addLikeItem(item);
-    toast('Added to likes!', { icon: '❤️' });
+    if (isLike) unlikeItem(item);
+    toast(`${isLike ? 'Removed from' : 'Added to'} likes!`, { icon: !isLike && '❤️' });
   };
 
   return (
@@ -55,9 +54,9 @@ export const ItemCard = (props) => {
         <Grid2 item>
           <Stack direction={'row'}>
             <GenericIconButton
-              icon={likedItems?.includes(item) ? <TiHeart color="#ec7063"/> : <TiHeartOutline />}
+              icon={likedItems?.includes(item) ? <TiHeart color="#ec7063" /> : <TiHeartOutline />}
               tooltip={'Like'}
-              onClick={() => handleLikeUnlike(item)}
+              onClick={() => handleLikeUnlike(item, likedItems?.includes(item))}
             />
             <GenericIconButton
               icon={<TbBasket />}
