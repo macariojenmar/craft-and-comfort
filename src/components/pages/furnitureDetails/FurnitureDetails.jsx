@@ -5,13 +5,14 @@ import { useSearchParams } from "react-router-dom";
 import { GenericImageBox } from "../../generic/GenericImageBox";
 import { FURNITURES } from "../../../enums/dummyData/dummyData";
 import { PESO_SYMBOL } from "../../../enums/generalEnum";
-import { formatWithThousandSeparator } from "../../../helpers/stringHelper";
+import { copyToClipboard, formatWithThousandSeparator } from "../../../helpers/stringHelper";
 import { GenericIconButton } from "../../generic/GenericIconButton";
 import { LuCopy } from "react-icons/lu";
 import { useBasketStore } from "../../../hooks/useStore";
 import { FurnitureList } from "../../ui/list/FurnitureList";
 import { ReviewsStars } from "../../ui/reviews/ReviewsStars";
 import { GenericLikeButton } from "../../generic/GenericLikeButton";
+import toast from "react-hot-toast";
 
 const FurnitureDetails = () => {
   const [reviewsCurrentPage, setReviewsCurrentPage] = useState(1);
@@ -34,6 +35,11 @@ const FurnitureDetails = () => {
     setReviewsCurrentPage(value);
   };
 
+  const handleCopyLink = () => {
+    copyToClipboard(window.location.href);
+    toast.success('Link copied to clipboard!')
+  };
+
   return (
     <Fragment>
       <AppLayout padding={{ xs: '15px 15px', md: '20px 420px' }}>
@@ -53,19 +59,20 @@ const FurnitureDetails = () => {
               <GenericIconButton
                 icon={<LuCopy size={'18px'} />}
                 tooltip={'Copy link'}
+                onClick={() => handleCopyLink()}
               />
             </Stack>
             <Typography>{PESO_SYMBOL}{formatWithThousandSeparator(selectedFurniture?.price)}</Typography>
-            <ReviewsStars reviews={selectedFurniture?.reviews?.length} rating={4} />
-            <Box sx={{ height: '120px' }}>
+            <Box sx={{ height: '120px', mb: 2 }}>
               <Typography variant="body2" mt={1}>{selectedFurniture?.description}</Typography>
             </Box>
+            <ReviewsStars reviews={selectedFurniture?.reviews?.length} rating={4} />
             <Box sx={{
               backgroundColor: 'grey.main',
               padding: '10px 15px',
               borderRadius: '10px',
               height: '255px',
-              mt: 2,
+              mt: 1,
               display: 'flex',
               flexDirection: 'column'
             }}>

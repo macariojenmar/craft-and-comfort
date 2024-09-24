@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 const WishlistPage = () => {
   const { likedItems } = useLikeStore();
   const navigate = useNavigate();
-  console.log('likedItems', likedItems);
   return (
     <AppLayout>
       <Typography fontWeight={800} mb={1.5} variant="h6">Your Wishlist</Typography>
