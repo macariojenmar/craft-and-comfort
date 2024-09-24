@@ -9,15 +9,38 @@ import { formatWithThousandSeparator } from "../../../helpers/stringHelper";
 import { IoMdAdd } from "react-icons/io";
 import { LuMinus } from "react-icons/lu";
 import { useBasketStore, useLikeStore } from "../../../hooks/useStore";
+import { useNavigate } from "react-router-dom";
 
 export const NavigationButtonList = () => {
   const { cartItems, addCartItem, removeCartItem, removeAllItem } = useBasketStore();
+  const navigate = useNavigate();
   const { likedItems } = useLikeStore();
   const [openCart, setOpenCart] = useState(false);
+  const [selectedCheckout, setSelectedCheckout] = useState([]);
 
   const handleBrowseShop = () => {
+    navigate('/shop')
     setOpenCart(false);
   };
+
+  const handleSelectItemToCheckout = (data, condition) => {
+    if (condition) {
+      setSelectedCheckout((prev) => [...prev, data]);
+    } else {
+      setSelectedCheckout((prev) => prev.filter((item) => item?.id !== data?.id));
+    }
+  };
+
+  const handleCloseBasket = () => {
+    setOpenCart(false);
+    setSelectedCheckout([]);
+  };
+
+  const estimatedPrice = useMemo(() => {
+    return selectedCheckout?.reduce((sum, product) => sum + product.price, 0);
+  }, [selectedCheckout]);
+
+  console.log('selectedCheckout', selectedCheckout);
 
   const renderCartItems = useMemo(() => {
     const list = cartItems?.map((item) => {
@@ -57,7 +80,7 @@ export const NavigationButtonList = () => {
       <Drawer
         anchor={'right'}
         open={openCart}
-        onClose={() => setOpenCart(false)}
+        onClose={() => handleCloseBasket()}
         sx={{
           '.MuiPaper-root': {
             backgroundColor: '#FFF4EA',
@@ -80,7 +103,7 @@ export const NavigationButtonList = () => {
             </Stack>
             <GenericIconButton
               icon={<IoClose />}
-              onClick={() => setOpenCart(false)}
+              onClick={() => handleCloseBasket()}
             />
           </Stack>
           <Divider sx={{ margin: '10px 0px' }} />
@@ -112,7 +135,11 @@ export const NavigationButtonList = () => {
                               <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>
                                 <Typography fontWeight={800}>{item?.name}</Typography>
                                 <Tooltip title={'Check out'}>
-                                  <Checkbox size="small" />
+                                  <Checkbox
+                                    size="small"
+                                    checked={selectedCheckout?.includes(item)}
+                                    onChange={(event) => handleSelectItemToCheckout(item, event.target.checked)}
+                                  />
                                 </Tooltip>
                               </Stack>
                               <Typography variant="body2" mb={2}>{PESO_SYMBOL}{formatWithThousandSeparator(item?.price)}</Typography>
@@ -170,14 +197,14 @@ export const NavigationButtonList = () => {
               <Grid2 item>
                 <Stack>
                   <Typography variant="caption" color="grey">Estimated Price: </Typography>
-                  <Typography variant="h6" fontWeight={800}>{PESO_SYMBOL}20,000</Typography>
+                  <Typography variant="h6" fontWeight={800}>{PESO_SYMBOL}{formatWithThousandSeparator(estimatedPrice)}</Typography>
                 </Stack>
               </Grid2>
               <Grid2 container item justifyContent={'flex-end'}>
                 <FormControlLabel control={<Checkbox />} label="All" />
               </Grid2>
             </Grid2>
-            <Button variant="contained" size="large" fullWidth sx={{ fontWeight: 800 }}>CHECKOUT (1)</Button>
+            <Button variant="contained" size="large" fullWidth sx={{ fontWeight: 800 }}>CHECKOUT ({selectedCheckout?.length})</Button>
           </Box>
         }
       </Drawer>
