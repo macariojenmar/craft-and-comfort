@@ -5,9 +5,11 @@ import NavigationBar from './components/ui/navigation/NavigationBar';
 import MuiThemeProvider from './providers/ThemeProvider';
 import HomePage from './components/pages/homePage/HomePage';
 import { Footer } from './components/ui/footer/Footer';
-import ShopPage from './components/pages/shop/ShopePage';
+import ShopPage from './components/pages/shop/ShopPage';
 import { Box } from '@mui/material';
 import { Toaster } from 'react-hot-toast';
+import FurnitureDetails from './components/pages/furnitureDetails/FurnitureDetails';
+import WishlistPage from './components/pages/likes/WishlistPage';
 
 const root = createRoot(document.getElementById("root"));
 
@@ -28,6 +30,8 @@ root.render(
           <Routes>
             <Route path='/' element={<HomePage />} />
             <Route path='/shop' element={<ShopPage />} />
+            <Route path='/furniture-details' element={<FurnitureDetails />} />
+            <Route path='/wishlist' element={<WishlistPage />} />
           </Routes>
         </Box>
         <Footer />

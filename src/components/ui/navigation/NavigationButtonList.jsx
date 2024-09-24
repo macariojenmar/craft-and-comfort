@@ -9,7 +9,7 @@ import { formatWithThousandSeparator } from "../../../helpers/stringHelper";
 import { IoMdAdd } from "react-icons/io";
 import { LuMinus } from "react-icons/lu";
 import { useBasketStore, useLikeStore } from "../../../hooks/useStore";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const NavigationButtonList = () => {
   const { cartItems, addCartItem, removeCartItem, removeAllItem } = useBasketStore();
@@ -36,15 +36,13 @@ export const NavigationButtonList = () => {
     setSelectedCheckout([]);
   };
 
-  const estimatedPrice = useMemo(() => {
-    return selectedCheckout?.reduce((sum, product) => sum + product.price, 0);
-  }, [selectedCheckout]);
-
-  console.log('selectedCheckout', selectedCheckout);
+  const isItemSelectedToCheckout = (id) => {
+    return selectedCheckout?.find((item) => item?.id == id)
+  };
 
   const renderCartItems = useMemo(() => {
     const list = cartItems?.map((item) => {
-      const duplicated = cartItems?.filter((test) => test.id === item.id)?.length
+      const duplicated = cartItems?.filter((cartItem) => cartItem.id === item.id)?.length
       return {
         ...item,
         count: duplicated,
@@ -54,6 +52,10 @@ export const NavigationButtonList = () => {
     return list.filter((cartItem, index, self) => index === self.findIndex(item => item.id === cartItem.id));
   }, [cartItems]);
 
+  const handleSelectDeselectAll = (checked) => {
+    setSelectedCheckout(checked ? renderCartItems : []);
+  };
+
   return (
     <Stack direction={'row'} gap={0.5}>
       <Badge
@@ -61,10 +63,12 @@ export const NavigationButtonList = () => {
         color="primary"
         overlap="circular"
       >
-        <GenericIconButton
-          icon={<TbBasketHeart />}
-          tooltip={'Likes'}
-        />
+        <Link to={'/wishlist'}>
+          <GenericIconButton
+            icon={<TbBasketHeart />}
+            tooltip={'Likes'}
+          />
+        </Link>
       </Badge>
       <Badge
         badgeContent={renderCartItems?.length}
@@ -113,23 +117,27 @@ export const NavigationButtonList = () => {
                 <Stack gap={1}>
                   {
                     renderCartItems?.map((item, index) => {
+                      const isSelected = isItemSelectedToCheckout(item?.id);
                       return (
                         <Card variant="outlined" sx={{ padding: '10px !important' }} key={`item-key-${index}`}>
                           <Grid2 container spacing={1.5}>
                             <Grid2 item size={{ xs: 4 }}>
-                              <Box
-                                sx={{
-                                  height: { xs: '90px', md: '92px' },
-                                  backgroundColor: '#dadada',
-                                  borderRadius: '5px',
-                                  cursor: 'pointer'
-                                }}
-                              >
-                                <img
-                                  src={item?.image}
-                                  style={{ width: '100%', height: '100%', borderRadius: '5px', boxShadow: SHADOWS.default }}
-                                />
-                              </Box>
+                              <Link to={`/furniture-details?id=${item?.id}`}>
+                                <Box
+                                  sx={{
+                                    height: { xs: '90px', md: '92px' },
+                                    backgroundColor: '#dadada',
+                                    borderRadius: '5px',
+                                    cursor: 'pointer',
+                                  }}
+                                  onClick={() => setOpenCart(false)}
+                                >
+                                  <img
+                                    src={item?.image}
+                                    style={{ width: '100%', height: '100%', borderRadius: '5px', boxShadow: SHADOWS.default }}
+                                  />
+                                </Box>
+                              </Link>
                             </Grid2>
                             <Grid2 item size={{ xs: 8 }}>
                               <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>
@@ -137,7 +145,7 @@ export const NavigationButtonList = () => {
                                 <Tooltip title={'Check out'}>
                                   <Checkbox
                                     size="small"
-                                    checked={selectedCheckout?.includes(item)}
+                                    checked={isSelected}
                                     onChange={(event) => handleSelectItemToCheckout(item, event.target.checked)}
                                   />
                                 </Tooltip>
@@ -150,11 +158,14 @@ export const NavigationButtonList = () => {
                                       <GenericIconButton
                                         icon={<LuMinus size={'14px'} />}
                                         onClick={() => removeCartItem(item)}
+                                        disabled={isSelected}
                                       />
                                       <Typography variant="caption" sx={{ margin: '0 5px' }}>{item?.count}</Typography>
                                       <GenericIconButton
                                         icon={<IoMdAdd size={'14px'} />}
                                         onClick={() => addCartItem(item)}
+                                        disabled={isSelected}
+
                                       />
                                     </Box>
                                   </Box>
@@ -164,6 +175,7 @@ export const NavigationButtonList = () => {
                                     icon={<TbTrash size={'18px'} />}
                                     tooltip={'Remove'}
                                     onClick={() => removeAllItem(item)}
+                                    disabled={isSelected}
                                   />
                                 </Grid2>
                               </Grid2>
@@ -197,11 +209,11 @@ export const NavigationButtonList = () => {
               <Grid2 item>
                 <Stack>
                   <Typography variant="caption" color="grey">Estimated Price: </Typography>
-                  <Typography variant="h6" fontWeight={800}>{PESO_SYMBOL}{formatWithThousandSeparator(estimatedPrice)}</Typography>
+                  <Typography variant="h6" fontWeight={800}>{PESO_SYMBOL}{formatWithThousandSeparator(selectedCheckout?.reduce((sum, product) => sum + product.price, 0))}</Typography>
                 </Stack>
               </Grid2>
               <Grid2 container item justifyContent={'flex-end'}>
-                <FormControlLabel control={<Checkbox />} label="All" />
+                <FormControlLabel control={<Checkbox onChange={(event) => handleSelectDeselectAll(event.target.checked)} />} label="All" />
               </Grid2>
             </Grid2>
             <Button variant="contained" size="large" fullWidth sx={{ fontWeight: 800 }}>CHECKOUT ({selectedCheckout?.length})</Button>

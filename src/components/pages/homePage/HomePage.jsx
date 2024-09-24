@@ -1,27 +1,14 @@
 import React, { Fragment } from "react";
-import { Grid2 } from "@mui/material";
 import { Banner } from "./Banner";
 import AppLayout from "../../../layouts/AppLayout";
-import { FURNITURES } from "../../../enums/dummyData/dummyData";
-import { ItemCard } from "../../ui/cards/ItemCard";
-import { arrayShuffler } from "../../../helpers/arrayHelper";
+import { FurnitureList } from "../../ui/list/FurnitureList";
 
 const HomePage = () => {
   return (
     <Fragment>
       <Banner />
       <AppLayout>
-        <Grid2 container spacing={4} mt={1} mb={1}>
-          {
-            arrayShuffler(FURNITURES).slice(0, 6)?.map((item, index) => {
-              return (
-                <Grid2 item size={{ xs: 12, md: 2 }} key={`card-key-${index}`}>
-                  <ItemCard item={item} />
-                </Grid2>
-              );
-            })
-          }
-        </Grid2>
+        <FurnitureList />
       </AppLayout>
     </Fragment>
   );
