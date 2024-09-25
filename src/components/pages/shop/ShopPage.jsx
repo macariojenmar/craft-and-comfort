@@ -116,7 +116,7 @@ const ShopPage = () => {
           {
             renderFurnitures?.map((item, index) => {
               return (
-                <Grid2 item size={{ xs: 12, sm: 6, md: 2 }} key={`card-key-${index}`}>
+                <Grid2 item size={{ xs: 12, sm: 6, md: 3, lg: 2 }} key={`card-key-${index}`}>
                   <ItemCard item={item} />
                 </Grid2>
               );

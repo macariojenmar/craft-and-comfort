@@ -9,7 +9,7 @@ export const Banner = () => {
   const navigate = useNavigate();
   return (
     <Fade in={true}>
-      <Box sx={{ backgroundColor: 'primary.main', padding: { md: '0px 300px' }, color: '#FFF' }}>
+      <Box sx={{ backgroundColor: 'primary.main', padding: { md: '0px 100px', lg: '0px 300px' }, color: '#FFF' }}>
         <Grid2 container alignItems={'center'} spacing={1} direction={{ xs: 'column-reverse', md: 'row' }}>
           <Grid2 item size={{ xs: 12, md: 6 }} padding={{ xs: '15px 15px', md: '0px' }}>
             <GenericResponsiveTypography fontWeight={800} mb={1}>Simplicity & Elegance in Every Modern Piece</GenericResponsiveTypography>
@@ -27,7 +27,7 @@ export const Banner = () => {
                     key={`banner-key-${index}`}
                     sx={{
                       width: '550px',
-                      height: { xs: '300px', md: '400px' },
+                      height: { xs: '300px', md: '340px', lg: '400px' },
                     }}
                   >
                     <img

@@ -22,6 +22,15 @@ export const light = createTheme({
   typography: {
     fontFamily: 'Nunito'
   },
+  breakpoints: {
+    values: {
+      xs: 375,
+      sm: 768,
+      md: 1024,
+      lg: 1920,
+      xl: 1440
+    },
+  },
   components: {
     MuiCssBaseline: {
       styleOverrides: {

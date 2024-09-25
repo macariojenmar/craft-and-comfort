@@ -105,7 +105,7 @@ export const NavigationButtonList = () => {
           <Divider sx={{ margin: '10px 0px' }} />
           {
             renderCartItems?.length > 0 ?
-              <Box sx={{ height: '76vh', overflowX: 'auto' }}>
+              <Box sx={{ height: { xs: '76vh', md: '70vh', lg: '76vh' }, overflowX: 'auto' }}>
                 <Stack gap={1}>
                   {
                     renderCartItems?.map((item, index) => {

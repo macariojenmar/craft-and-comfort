@@ -47,9 +47,9 @@ const FurnitureDetails = () => {
 
   return (
     <Fragment>
-      <AppLayout padding={{ xs: '15px 15px', md: '20px 420px' }}>
+      <AppLayout padding={{ xs: '15px 15px', md: '20px 100px', lg: '20px 420px' }}>
         <Grid2 container spacing={3}>
-          <Grid2 item size={{ xs: 6 }}>
+          <Grid2 item size={{ xs: 12, md: 6 }}>
             <GenericImageBox
               image={selectedFurniture?.image}
               height={{
@@ -58,7 +58,7 @@ const FurnitureDetails = () => {
               }}
             />
           </Grid2>
-          <Grid2 item size={{ xs: 6 }}>
+          <Grid2 item size={{ xs: 12, md: 6 }}>
             <Stack direction={'row'} alignItems={'center'} gap={1}>
               <Typography variant="h6" fontWeight={800}>{selectedFurniture?.name}</Typography>
               <GenericIconButton
@@ -68,7 +68,7 @@ const FurnitureDetails = () => {
               />
             </Stack>
             <Typography>{PESO_SYMBOL}{formatWithThousandSeparator(selectedFurniture?.price)}</Typography>
-            <Box sx={{ height: '120px', mb: 2 }}>
+            <Box sx={{ height: { xs: '170px', md: '120px' }, mb: 2 }}>
               <Typography variant="body2" mt={1}>{selectedFurniture?.description}</Typography>
             </Box>
             <Stack mt={2} mb={2} direction={'row'} gap={1}>
@@ -88,7 +88,7 @@ const FurnitureDetails = () => {
               backgroundColor: 'grey.main',
               padding: '10px 15px',
               borderRadius: '10px',
-              height: '255px',
+              height: { xs: '300px', md: '255px' },
               mt: 1,
               display: 'flex',
               flexDirection: 'column'
