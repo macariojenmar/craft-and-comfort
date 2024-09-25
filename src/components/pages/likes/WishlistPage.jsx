@@ -5,10 +5,12 @@ import { Box, Button, Grid2, Stack, Typography } from "@mui/material";
 import { ItemCard } from "../../ui/cards/ItemCard";
 import { GoInbox } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
+import { FurnitureList } from "../../ui/list/FurnitureList";
 
 const WishlistPage = () => {
   const { likedItems } = useLikeStore();
   const navigate = useNavigate();
+  
   return (
     <AppLayout>
       <Typography fontWeight={800} mb={1.5} variant="h6">Your Wishlist</Typography>
@@ -39,6 +41,8 @@ const WishlistPage = () => {
           </Stack>
         </Box>
       }
+      <Typography fontWeight={800} mb={1.5} mt={4} variant="h6">Furnitures you might like</Typography>
+      <FurnitureList includeLiked={false} />
     </AppLayout>
   )
 };
