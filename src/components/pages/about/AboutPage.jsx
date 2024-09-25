@@ -37,7 +37,7 @@ const AboutPage = () => {
             <Typography variant="body2" fontWeight={800}>Jenmar Macario</Typography>
             <FaArrowUpRightFromSquare size={'14px'} />
           </Stack>
-          <Typography variant="caption">Developed using <b>React JS</b> and <b>Material UI</b>, deployed using <b>Google Firebase</b>.</Typography>
+          <Typography variant="caption">Developed using <b>React JS</b> and <b>Material UI</b>, and deployed <br></br> using <b>Google Firebase</b>.</Typography>
         </Grid2>
       </Grid2>
     </AppLayout>
