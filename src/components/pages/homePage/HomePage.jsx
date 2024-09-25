@@ -8,7 +8,7 @@ const HomePage = () => {
     <Fragment>
       <Banner />
       <AppLayout>
-        <FurnitureList />
+        <FurnitureList showTitle={false}/>
       </AppLayout>
     </Fragment>
   );

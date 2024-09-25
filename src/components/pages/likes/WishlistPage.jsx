@@ -41,7 +41,6 @@ const WishlistPage = () => {
           </Stack>
         </Box>
       }
-      <Typography fontWeight={800} mb={1.5} mt={4} variant="h6">Furnitures you might like</Typography>
       <FurnitureList includeLiked={false} />
     </AppLayout>
   )

@@ -6,7 +6,7 @@ import { GenericImageBox } from "../../generic/GenericImageBox";
 
 const AboutPage = () => {
   return (
-    <AppLayout padding={{ xs: '15px 15px', md: '45px 200px', lg: '150px 520px' }}>
+    <AppLayout padding={{ xs: '15px 15px', md: '45px 200px', lg: '130px 520px' }}>
       <Grid2 container spacing={{ xs: 2, md: 4 }} alignItems={'center'}>
         <Grid2 item size={{ xs: 12, md: 6 }}>
           <GenericImageBox

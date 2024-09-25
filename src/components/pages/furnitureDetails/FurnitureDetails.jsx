@@ -120,7 +120,6 @@ const FurnitureDetails = () => {
         </Grid2>
       </AppLayout>
       <AppLayout>
-        <Typography fontWeight={800} mb={1.5} variant="h6">Furnitures you might like</Typography>
         <FurnitureList />
       </AppLayout>
     </Fragment >
