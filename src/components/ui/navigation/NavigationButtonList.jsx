@@ -39,7 +39,7 @@ export const NavigationButtonList = () => {
   const isItemSelectedToCheckout = (id) => {
     return selectedCheckout?.find((item) => item?.id == id)
   };
-
+  
   const renderCartItems = useMemo(() => {
     const list = cartItems?.map((item) => {
       const duplicated = cartItems?.filter((cartItem) => cartItem.id === item.id)?.length
@@ -109,7 +109,7 @@ export const NavigationButtonList = () => {
                 <Stack gap={1}>
                   {
                     renderCartItems?.map((item, index) => {
-                      const isSelected = isItemSelectedToCheckout(item?.id);
+                      const isSelected = isItemSelectedToCheckout(item?.id) ? true : false;
                       return (
                         <Card variant="outlined" sx={{ padding: '10px !important' }} key={`item-key-${index}`}>
                           <Grid2 container spacing={1.5}>

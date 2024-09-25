@@ -20,10 +20,11 @@ const AboutPage = () => {
         </Grid2>
         <Grid2 item size={{ xs: 12, md: 6 }}>
           <Typography variant="h5" fontWeight={800} mb={1}>About Craft & Comfort</Typography>
-          <Typography variant="body2" mb={2}>
+          <Typography variant="body2">
             A fictional online shop specializing in handcrafted furniture, offering a unique collection that blends minimalist elegance, timeless class, and vintage charm. The website is designed to be fully responsive, providing an optimal user experience across all devices. With its clean, minimalist yet modern interface, the site reflects the brand's commitment to simplicity, functionality, and aesthetic appeal, making it easy for customers to explore the collection.
           </Typography>
           <Stack
+            mt={3}
             direction={'row'}
             gap={1}
             alignItems={'center'}
@@ -36,6 +37,7 @@ const AboutPage = () => {
             <Typography variant="body2" fontWeight={800}>Jenmar Macario</Typography>
             <FaArrowUpRightFromSquare size={'14px'} />
           </Stack>
+          <Typography variant="caption">Developed using <b>React JS</b> and <b>Material UI</b>, deployed using <b>Google Firebase</b>.</Typography>
         </Grid2>
       </Grid2>
     </AppLayout>
