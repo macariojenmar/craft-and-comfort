@@ -52,7 +52,7 @@ export const ItemCard = (props) => {
             <GenericLikeButton item={item} />
             <GenericIconButton
               icon={<TbBasket />}
-              tooltip={'Add to cart'}
+              tooltip={'Add to basket'}
               onClick={() => handleAddToCart(item)}
             />
           </Stack>
