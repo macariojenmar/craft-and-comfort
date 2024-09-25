@@ -13,6 +13,7 @@ const AboutPage = () => {
             image={'/CCAboutImage.png'}
             height={{
               xs: '320px',
+              sm: '650px',
               md: '350px'
             }}
           />

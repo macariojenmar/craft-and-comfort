@@ -26,8 +26,8 @@ export const Banner = () => {
                   <Box
                     key={`banner-key-${index}`}
                     sx={{
-                      width: '550px',
-                      height: { xs: '300px', md: '340px', lg: '400px' },
+                      width: { xs: '550px', sm: '100%', md: '550px' },
+                      height: { xs: '300px', sm: '530px', md: '340px', lg: '400px' },
                     }}
                   >
                     <img
