@@ -10,6 +10,7 @@ import { DisplayLayout } from "../../../layouts/DisplayLayout";
 import { GenericIconButton } from "../../generic/GenericIconButton";
 import { IoMenu } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import { GenericLink } from "../../generic/GenericLink";
 
 const NavigationBar = () => {
   const [openMenuDrawer, setOpenMenuDrawer] = useState(false);
@@ -29,7 +30,13 @@ const NavigationBar = () => {
         spacing={1}
       >
         <Grid2 item size={{ xs: 6, md: 4 }}>
-          <Typography variant="h6" fontWeight={800} color={'primary'}>Craft & Comfort</Typography>
+          <GenericLink
+            path={'/'}
+            text={'Craft & Comfort'}
+            variant="h6"
+            fontWeight={800}
+            color={'primary'}
+          />
         </Grid2>
         <Grid2 container item size={{ xs: 6 }} justifyContent={'flex-end'} display={{ md: 'none' }}>
           <NavigationButtonList />
