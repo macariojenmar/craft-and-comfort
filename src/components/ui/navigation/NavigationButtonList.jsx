@@ -1,20 +1,20 @@
 import React, { useMemo, useState } from "react";
 import { Badge, Box, Button, Card, Checkbox, Chip, Divider, Drawer, FormControlLabel, Grid2, Stack, Tooltip, Typography } from "@mui/material";
 import { GenericIconButton } from "../../generic/GenericIconButton";
-import { TbBasket, TbBasketHeart, TbTrash } from "react-icons/tb";
+import { TbBasket, TbTrash } from "react-icons/tb";
 import { IoClose } from "react-icons/io5";
 import { SHADOWS } from "../../../enums/themeEnums";
 import { PESO_SYMBOL } from "../../../enums/generalEnum";
 import { formatWithThousandSeparator } from "../../../helpers/stringHelper";
 import { IoMdAdd } from "react-icons/io";
 import { LuMinus } from "react-icons/lu";
-import { useBasketStore, useLikeStore } from "../../../hooks/useStore";
+import { useBasketStore } from "../../../hooks/useStore";
 import { Link, useNavigate } from "react-router-dom";
+import { TiUserOutline } from "react-icons/ti";
 
 export const NavigationButtonList = () => {
   const { cartItems, addCartItem, removeCartItem, removeAllItem } = useBasketStore();
   const navigate = useNavigate();
-  const { likedItems } = useLikeStore();
   const [openCart, setOpenCart] = useState(false);
   const [selectedCheckout, setSelectedCheckout] = useState([]);
 
@@ -58,18 +58,10 @@ export const NavigationButtonList = () => {
 
   return (
     <Stack direction={'row'} gap={0.5}>
-      <Badge
-        badgeContent={likedItems?.length}
-        color="primary"
-        overlap="circular"
-      >
-        <Link to={'/wishlist'}>
-          <GenericIconButton
-            icon={<TbBasketHeart />}
-            tooltip={'Likes'}
-          />
-        </Link>
-      </Badge>
+      <GenericIconButton
+        icon={<TiUserOutline />}
+        tooltip={'Account'}
+      />
       <Badge
         badgeContent={renderCartItems?.length}
         color="primary"

@@ -28,7 +28,7 @@ export const ItemCard = (props) => {
       <Link to={`/furniture-details?id=${item?.id}`}>
         <Box
           sx={{
-            height: { xs: '320px', md: '260px' },
+            height: { xs: '320px', md: '220px' },
             mb: 1,
             backgroundColor: '#dadada',
             borderRadius: '10px',

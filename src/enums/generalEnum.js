@@ -12,8 +12,8 @@ export const NAVIGATION = Object.freeze([
     title: 'Shop'
   },
   {
-    path: '/collections',
-    title: 'Collections'
+    path: '/wishlist',
+    title: 'Wishlist'
   },
   {
     path: '/about',

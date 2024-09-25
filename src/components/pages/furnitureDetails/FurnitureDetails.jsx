@@ -40,6 +40,11 @@ const FurnitureDetails = () => {
     toast.success('Link copied to clipboard!')
   };
 
+  const handleAddToCart = (item) => {
+    addCartItem(item)
+    toast('Added to basket!', { icon: '🧺' });
+  };
+
   return (
     <Fragment>
       <AppLayout padding={{ xs: '15px 15px', md: '20px 420px' }}>
@@ -66,6 +71,18 @@ const FurnitureDetails = () => {
             <Box sx={{ height: '120px', mb: 2 }}>
               <Typography variant="body2" mt={1}>{selectedFurniture?.description}</Typography>
             </Box>
+            <Stack mt={2} mb={2} direction={'row'} gap={1}>
+              <Button
+                variant="contained"
+                size="large"
+                fullWidth
+                sx={{ fontWeight: 800 }}
+                onClick={() => handleAddToCart(selectedFurniture)}
+              >
+                ADD TO BASKET
+              </Button>
+              <GenericLikeButton item={selectedFurniture} />
+            </Stack>
             <ReviewsStars reviews={selectedFurniture?.reviews?.length} rating={4} />
             <Box sx={{
               backgroundColor: 'grey.main',
@@ -99,18 +116,6 @@ const FurnitureDetails = () => {
                 />
               </Box>
             </Box>
-            <Stack mt={2} direction={'row'} gap={1}>
-              <Button
-                variant="contained"
-                size="large"
-                fullWidth
-                sx={{ fontWeight: 800 }}
-                onClick={() => addCartItem(selectedFurniture)}
-              >
-                ADD TO BASKET
-              </Button>
-              <GenericLikeButton item={selectedFurniture} />
-            </Stack>
           </Grid2>
         </Grid2>
       </AppLayout>

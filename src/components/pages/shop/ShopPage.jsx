@@ -61,21 +61,37 @@ const ShopPage = () => {
     <AppLayout>
       <Grid2 container mb={2} alignItems={'center'} spacing={1.5}>
         <Grid2 container item size={{ xs: 12, md: 3 }}>
-          <Stack direction={'row'} gap={3}>
-            <GenericIconLabel
-              label={`Sort: ${kebabToCapitalized(sortType)}`}
-              startIcon={<TbArrowsSort />}
-              endIcon={<MdKeyboardArrowDown />}
-              select={true}
+          <Stack direction={'row'} gap={1}>
+            <Box
+              sx={{
+                backgroundColor: 'grey.main',
+                padding: '8px 15px',
+                borderRadius: '10px'
+              }}
               onClick={(event) => handleOpenFilterPopover(event, 'sort')}
-            />
-            <GenericIconLabel
-              label={'Filters'}
-              startIcon={<IoFilter />}
-              endIcon={<MdKeyboardArrowDown />}
-              select={true}
+            >
+              <GenericIconLabel
+                label={`Sort: ${kebabToCapitalized(sortType)}`}
+                startIcon={<TbArrowsSort />}
+                endIcon={<MdKeyboardArrowDown />}
+                select={true}
+              />
+            </Box>
+            <Box
+              sx={{
+                backgroundColor: 'grey.main',
+                padding: '8px 15px',
+                borderRadius: '10px'
+              }}
               onClick={(event) => handleOpenFilterPopover(event, 'filters')}
-            />
+            >
+              <GenericIconLabel
+                label={'Filters'}
+                startIcon={<IoFilter />}
+                endIcon={<MdKeyboardArrowDown />}
+                select={true}
+              />
+            </Box>
           </Stack>
         </Grid2>
         <Grid2 container item size={{ xs: 12, md: 9 }} justifyContent={{ xs: 'flex-start', md: 'flex-end' }}>
@@ -96,7 +112,7 @@ const ShopPage = () => {
         </Grid2>
       </Grid2>
       {
-        renderFurnitures?.length > 0 ? <Grid2 container spacing={4}>
+        renderFurnitures?.length > 0 ? <Grid2 container spacing={3}>
           {
             renderFurnitures?.map((item, index) => {
               return (

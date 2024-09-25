@@ -13,7 +13,7 @@ const AboutPage = () => {
             image={'/CCAboutImage.png'}
             height={{
               xs: '320px',
-              md: '320px'
+              md: '350px'
             }}
           />
         </Grid2>

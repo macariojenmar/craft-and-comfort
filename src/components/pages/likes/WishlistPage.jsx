@@ -10,7 +10,7 @@ import { FurnitureList } from "../../ui/list/FurnitureList";
 const WishlistPage = () => {
   const { likedItems } = useLikeStore();
   const navigate = useNavigate();
-  
+
   return (
     <AppLayout>
       <Typography fontWeight={800} mb={1.5} variant="h6">Your Wishlist</Typography>
