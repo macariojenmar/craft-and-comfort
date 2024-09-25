@@ -10,6 +10,7 @@ import { Box } from '@mui/material';
 import { Toaster } from 'react-hot-toast';
 import FurnitureDetails from './components/pages/furnitureDetails/FurnitureDetails';
 import WishlistPage from './components/pages/likes/WishlistPage';
+import AboutPage from './components/pages/about/AboutPage';
 
 const root = createRoot(document.getElementById("root"));
 
@@ -32,6 +33,7 @@ root.render(
             <Route path='/shop' element={<ShopPage />} />
             <Route path='/furniture-details' element={<FurnitureDetails />} />
             <Route path='/wishlist' element={<WishlistPage />} />
+            <Route path='/about' element={<AboutPage />} />
           </Routes>
         </Box>
         <Footer />
